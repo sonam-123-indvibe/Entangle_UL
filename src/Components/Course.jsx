@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../assets/home.css";
+import "../assets/Home.css";
 
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
