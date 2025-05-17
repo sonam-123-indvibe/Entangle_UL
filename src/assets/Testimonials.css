@@ -1,0 +1,131 @@
+.testimonial-section {
+    
+    padding: 60px 20px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: #00ffff;
+}
+
+.testimonial-carousel {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.testimonial-card {
+    background: #201e1e;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 100%;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #00ffff88;
+}
+
+.testimonial-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #00ffff;
+}
+
+.stars .star {
+    color: #ffcc00;
+}
+
+.review-text {
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.testimonial-buttons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    transform: translateY(-50%);
+    z-index: 3;
+}
+
+.testimonial-buttons button {
+    background: #00ffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    color: #000;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.testimonial-buttons button:hover {
+    background: #00cccc;
+}
+
+.testimonial-bg {
+    position: relative;
+    background-image: url('../assets/binary.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.testimonial-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.74);
+    /* dark overlay */
+    z-index: 1;
+}
+
+.testimonial-section {
+    position: relative;
+    z-index: 2;
+    padding: 60px 20px;
+    color: white;
+}
+
+.blur-border-box {
+    position: relative;
+    padding-top: 0px;
+    /* space for top blur */
+    overflow: hidden;
+}
+
+/* Top blur effect */
+.blur-border-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: rgba(24, 24, 24, 0);
+    /* light overlay */
+    backdrop-filter: blur(40px);
+    z-index: 1;
+    pointer-events: none;
+}

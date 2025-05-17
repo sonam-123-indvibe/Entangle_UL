@@ -1,0 +1,226 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+.subcat-background {
+    background-image: url('../assets/binary.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    /* padding: 50px 0; */
+}
+
+.subcat-overlay {
+    background-color: rgba(0, 0, 0, 0.404);
+    /* semi-transparent black */
+    backdrop-filter: blur(4px);
+    /* blur effect */
+    min-height: 100vh;
+    padding: 50px 0;
+    
+    color: #fff;
+}
+.subcat-card {
+    background-color: #0950538e;
+    border: 2px solid #00ffd5;
+    /* filter: blur(10px); */
+    /* border: none; */
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subcat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 213, 0.2);
+}
+
+.subcat-image {
+    transition: transform 0.3s ease;
+}
+
+.subcat-image:hover {
+    transform: scale(1.05);
+}
+
+.topic-item {
+    background-color: transparent;
+    color: #fff;
+    /* margin-bottom: 10px; */
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+
+h2{
+    color:#75ffe8 ;
+}
+h3{
+    color: #00ffd5;
+}
+h4{
+    color: #bdf1e9;
+}
+p{
+    color: #d3f3ee;
+}
+
+table td th {
+    background-color: #121212;
+}
+
+.custom-vertical-table {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.feature-table {
+    background-color: #292929;
+    color: #00ffd5;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+}
+
+.t-data {
+    /* background-color: #2a2a2a; */
+    color: #fff;
+}
+
+.table th,
+.table td {
+    vertical-align: middle !important;
+    /* border-color: #333; */
+}
+
+.icon {
+    color: #00ffd5;
+    font-size: 40px;
+}
+
+.feature-table{
+    font-size: 20px;
+    color: white;
+}
+
+.table{
+    border-radius: 20px;
+}
+
+.custom-vertical-table {
+    border-collapse: collapse;
+    /* Lines ko overlap hone se roke */
+    border: none;
+    /* Puri table ka border hata de */
+    border-radius: 10px;
+    /* Gol kona */
+    overflow: hidden;
+    /* Radius apply ho table pe */
+}
+
+.custom-vertical-table th,
+.custom-vertical-table td {
+    border: none !important;
+    /* Andar ki lines hata de */
+    padding: 10px;
+}
+
+.custom-vertical-table tr {
+    border-bottom: 1px solid #574f4f;
+    /* Agar chaho toh sirf horizontal line rakho */
+}
+
+/* Optional: Last row ke neeche ki line bhi hatao */
+.custom-vertical-table tr:last-child {
+    border-bottom: none;
+}
+.custom-vertical-table th {
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #1e1e1e;
+    color: #d1eee9;
+    /* text-align: end; */
+}
+
+.custom-vertical-table td {
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-align: start;
+    vertical-align: middle;
+    width: 40%;
+    background-color: #292929;
+    color: #00ffd5;
+}
+
+.table-responsive{
+    border: 2px solid #00ffd5;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #0d767949;
+}
+
+.font{
+    font-size: 40px;
+}
+
+.card>.list-group{
+    border: none;
+}
+
+.topic-item {
+    font-size: 16px;
+}
+
+.topic-item ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.text-muted1{
+    color: #00ffd5;
+}
+.text-muted1:hover {
+    color: black;
+}
+
+.Topic{
+    color: white;
+    font-size: 25px;
+}
+
+.Topic {
+    position: relative;
+    display: inline-block;
+    /* color: #007bff; */
+    transition: .4s;
+}
+.Topic:hover{
+    color: #52e2ca;
+    font-size: 32px;
+}
+
+.Topic::after {
+    content: "Click for more info";
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 15px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.Topic:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}

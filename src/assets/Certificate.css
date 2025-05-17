@@ -1,0 +1,19 @@
+body {
+    background: #f0f4f8;
+}
+
+.card {
+    border-radius: 16px;
+}
+
+input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, .25);
+}
+
+.certificate-preview img {
+    max-height: 400px;
+    object-fit: contain;
+}
+.card{
+    background-color: black;
+}
