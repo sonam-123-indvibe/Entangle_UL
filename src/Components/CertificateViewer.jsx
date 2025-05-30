@@ -1,70 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../assets/Certificate.css'; // optional custom CSS file
 
-const CertificateChecker = () => {
+const CertificateViewer = () => {
   const [rollNumber, setRollNumber] = useState('');
   const [certificate, setCertificate] = useState(null);
   const [error, setError] = useState('');
 
-  const handleSearch = async () => {
+  
+
+  const fetchCertificate = async () => {
     try {
-      const res = await axios.get(`https://entangen.onrender.com/Certificate/getCertificate/${rollNumber}`);
+      const res = await axios.get(`https://entangen.onrender.com/certificate/getCertificate/${rollNumber}`);
       setCertificate(res.data);
       setError('');
     } catch (err) {
       setCertificate(null);
-      setError("Certificate not found or course not completed");
+      setError('Certificate not found or course incomplete');
     }
   };
 
   return (
-    <div className="container py-5 d-flex justify-content-center align-items-center ">
-      <div className="card shadow-lg p-4 w-100" style={{ maxWidth: '600px' }}>
-        <h2 className="text-center mb-4">🔍 Check Your Certificate</h2>
+    <div className="max-w-md mx-auto p-4 border rounded shadow bg-white">
+      <h2 className="text-xl font-bold mb-4">Find Certificate</h2>
+      <input
+        type="text"
+        placeholder="Enter Roll Number"
+        value={rollNumber}
+        onChange={(e) => setRollNumber(e.target.value)}
+        className="w-full p-2 mb-3 border rounded"
+      />
+      <button onClick={fetchCertificate} className="bg-blue-600 text-white px-4 py-2 rounded">
+        Search
+      </button>
 
-        <div className="input-group mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter Roll Number"
-            value={rollNumber}
-            onChange={(e) => setRollNumber(e.target.value)}
-          />
-          <button className="btn btn-primary" onClick={handleSearch}>
-            Search
-          </button>
+      {error && <p className="mt-3 text-red-500">{error}</p>}
+
+      {certificate && (
+        <div className="mt-4">
+          <p><strong>Name:</strong> {certificate.name}</p>
+          <p><strong>Course:</strong> {certificate.course}</p>
+          <p><strong>Completion Date:</strong> {certificate.completionDate}</p>
+          <p><strong>Certificate:</strong></p>
+          {certificate.certificateUrl.endsWith('.pdf') ? (
+            <a href={`https://entangen.onrender.com${certificate.certificateUrl}`} target="_blank" rel="noreferrer" className="text-blue-600 underline">View PDF</a>
+          ) : (
+            <img src={`https://entangen.onrender.com${certificate.certificateUrl}`} alt="Certificate" className="w-full mt-2 border" />
+          )}
         </div>
-
-        {error && <div className="alert alert-danger text-center">{error}</div>}
-
-        {certificate && (
-          <div className="mt-4 border-top pt-3">
-            <h4>{certificate.name}'s Certificate</h4>
-            <p><strong>Course:</strong> {certificate.course}</p>
-            <p><strong>Completed On:</strong> {new Date(certificate.completionDate).toLocaleDateString()}</p>
-            
-            <div className="certificate-preview mb-3">
-              <img
-                src={`https://entangen.onrender.com${certificate.certificateUrl}`}
-                alt="Certificate"
-                className="img-fluid rounded border"
-              />
-            </div>
-
-            <a
-              href={`https://entangen.onrender.com${certificate.certificateUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline-primary"
-            >
-              View Full Certificate
-            </a>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 };
 
-export default CertificateChecker;
+export default CertificateViewer;

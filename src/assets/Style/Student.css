@@ -1,0 +1,105 @@
+.admin-panel {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px;
+    font-family: sans-serif;
+}
+
+.testimonial-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.testimonial-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.testimonial-image {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.testimonial-content {
+    margin-top: 15px;
+}
+
+.testimonial-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.edit-btn,
+.delete-btn,
+.save-btn,
+.cancel-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #1976d2;
+    color: #fff;
+}
+
+.delete-btn {
+    background-color: #e53935;
+    color: #fff;
+}
+
+.save-btn {
+    background-color: #2e7d32;
+    color: #fff;
+}
+
+.cancel-btn {
+    background-color: #757575;
+    color: #fff;
+}
+
+.inline-form input,
+.inline-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+.testimonial-content span {
+    margin-right: 2px;
+}
+
+.fas.fa-star {
+    transition: color 0.3s ease;
+    font-size: 20px;
+}
+
+.rating-stars {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.testimonial-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.testimonial-content{
+    color: white;
+}
