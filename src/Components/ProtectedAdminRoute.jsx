@@ -1,9 +1,8 @@
-// Components/ProtectedAdminRoute.jsx
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom'
 
-const ProtectedAdminRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem('isAdminAuthenticated') === 'true';
-  return isAuthenticated ? children : <Navigate to="/admin" />;
-};
+const protectedAdminRoute = ({ children }) => {
+  const isAuth = localStorage.getItem('adminAuth') === 'true'
+  return isAuth ? children : <Navigate to="/admin" />
+}
 
-export default ProtectedAdminRoute;
+export default protectedAdminRoute
