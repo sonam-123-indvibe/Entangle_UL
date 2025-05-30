@@ -193,4 +193,4 @@ const [subTopicVideoUrl, setSubTopicVideoUrl] = useState('');
   );
 };
 
-export default CourseManager;y
+export default CourseManager;
