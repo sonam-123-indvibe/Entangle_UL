@@ -8,7 +8,7 @@ import {
   Form,
   Spinner,
 } from 'react-bootstrap';
-import '../assets/Style/Admin.css';
+import '../assets/Admin.css';
 
 const AdminCourseTable = () => {
   const [courses, setCourses] = useState([]);
@@ -27,7 +27,7 @@ const AdminCourseTable = () => {
   const loadCourses = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('https://entangen.onrender.com/api/courses');
+      const res = await axios.get('https://entangle1-api.onrender.com/api/courses');
       setCourses(res.data);
     } catch (err) {
       console.error('Error fetching courses:', err);
@@ -42,21 +42,21 @@ const AdminCourseTable = () => {
 
   const handleDeleteCourse = async (id) => {
     if (window.confirm('Delete this course?')) {
-      await axios.delete(`https://entangen.onrender.com/api/course/${id}`);
+      await axios.delete(`https://entangle1-api.onrender.com/api/course/${id}`);
       loadCourses();
     }
   };
 
   const handleDeleteSubcategory = async (subId) => {
     if (window.confirm('Delete this subcategory?')) {
-      await axios.delete(`https://entangen.onrender.com/api/subcategory/${subId}`);
+      await axios.delete(`https://entangle1-api.onrender.com/api/subcategory/${subId}`);
       loadCourses();
     }
   };
 
   const handleDeleteTopic = async (topicId) => {
     if (window.confirm('Delete this topic?')) {
-      await axios.delete(`https://entangen.onrender.com/api/topicDeleate/${topicId}`);
+      await axios.delete(`https://entangle1-api.onrender.com/api/topicDeleate/${topicId}`);
       loadCourses();
     }
   };
@@ -65,7 +65,7 @@ const AdminCourseTable = () => {
     if (window.confirm('Delete this subtopic?')) {
       try {
         await axios.delete(
-          `https://entangen.onrender.com/api/topic/${topicId}/subtopic/${subtopicId}`
+          `https://entangle1-api.onrender.com/api/topic/${topicId}/subtopic/${subtopicId}`
         );
         loadCourses();
       } catch (error) {
@@ -102,7 +102,7 @@ const AdminCourseTable = () => {
       }
 
       await axios.put(
-        `https://entangen.onrender.com/api/${endpoint}`,
+        `https://entangle1-api.onrender.com/api/${endpoint}`,
         formData || editData,
         {
           headers: formData
@@ -120,7 +120,7 @@ const AdminCourseTable = () => {
 
   const handleTopicUpdate = async () => {
     try {
-      await axios.put(`https://entangen.onrender.com/api/topicUpdate/${topicsModal.topic._id}`, topicsModal.topic);
+      await axios.put(`https://entangle1-api.onrender.com/api/topicUpdate/${topicsModal.topic._id}`, topicsModal.topic);
       setTopicsModal({ show: false, topic: null });
       loadCourses();
     } catch (err) {
@@ -131,7 +131,7 @@ const AdminCourseTable = () => {
   const handleSubtopicUpdate = async () => {
     try {
       const { topicId, _id, title } = subtopicModal.subtopic;
-      await axios.put(`https://entangen.onrender.com/api/topic/${topicId}/subtopic/${_id}`, {
+      await axios.put(`https://entangle1-api.onrender.com/api/topic/${topicId}/subtopic/${_id}`, {
         title,
       });
       setSubtopicModal({ show: false, subtopic: null });
@@ -201,7 +201,7 @@ const AdminCourseTable = () => {
                               <React.Fragment key={sub._id}>
                                 <tr>
                                   <td>
-                                    <img src={`https://entangen.onrender.com/${sub.image}`} alt={sub.name} width="60" height="40" className="rounded shadow-sm" />
+                                    <img src={`https://entangle1-api.onrender.com/${sub.image}`} alt={sub.name} width="60" height="40" className="rounded shadow-sm" />
                                   </td>
                                   <td className="fw-medium">{sub.name}</td>
                                   <td>

@@ -4,7 +4,9 @@ import Courses from './CourseManager'; // Replace with active component
 // import SubCategories from './SubCategorieM';
 // import Topics from './Topics';
 // import Testimonials from './Testimonials';
-import '../assets/Style/Admin.css';
+// import '../assets/Admin.css';
+
+import "../assets/Admin.css"
 import SubCategoryManager from './SubCategoryManager';
 import StudentManeger from './StudentManeger';
 import AdminGallery from './AdminGallery';

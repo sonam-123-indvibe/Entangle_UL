@@ -15,7 +15,7 @@ const MediaUpload = () => {
     formData.append("type", type); // add type
 
     try {
-      const res = await fetch("http://localhost:5000/media/addMedia", {
+      const res = await fetch("https://entangle1-api.onrender.com/media/addMedia", {
         method: "POST",
         body: formData,
       });

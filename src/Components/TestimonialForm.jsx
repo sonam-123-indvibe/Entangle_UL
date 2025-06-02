@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../assets/Style/Admin.css';
+import '../assets/Admin.css';
 
 const TestimonialForm = ({ fetchTestimonials, editTestimonial, setEditTestimonial }) => {
   const [name, setName] = useState('');
@@ -37,9 +37,9 @@ const TestimonialForm = ({ fetchTestimonials, editTestimonial, setEditTestimonia
 
     try {
       if (editTestimonial) {
-        await axios.put(`https://entangen.onrender.com/testimonial/updateTeatimonial/${editTestimonial._id}`, formData);
+        await axios.put(`https://entangle1-api.onrender.com/testimonial/updateTeatimonial/${editTestimonial._id}`, formData);
       } else {
-        await axios.post('https://entangen.onrender.com/testimonial/addTestimonial', formData);
+        await axios.post('https://entangle1-api.onrender.com/testimonial/addTestimonial', formData);
       }
        alert("Testimonial Added Sucessfully")
       // setEditTestimonial(null);

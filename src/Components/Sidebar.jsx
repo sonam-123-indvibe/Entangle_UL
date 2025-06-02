@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../assets/Style/Admin.css'; // Assuming styling is here
+import '../assets/Admin.css'; // Assuming styling is here
 
 const Sidebar = ({ setActive }) => {
   const [activeTab, setActiveTab] = useState('courses');

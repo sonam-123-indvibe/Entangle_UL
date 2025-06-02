@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../assets/Style/Student.css';
+import '../assets/Student.css';
 // import '@fortawesome/fontawesome-free/css/all.min.css';
 import TestimonialForm from './TestimonialForm';
 
@@ -17,7 +17,7 @@ const StudentManeger = () => {
 
   const fetchTestimonials = async () => {
     try {
-      const response = await axios.get('https://entangen.onrender.com/testimonial/getTeatimonial');
+      const response = await axios.get('https://entangle1-api.onrender.com/testimonial/getTeatimonial');
       setTestimonials(response.data);
     } catch (error) {
       console.error('Error fetching testimonials:', error);
@@ -26,7 +26,7 @@ const StudentManeger = () => {
 
   const deleteTestimonial = async (id) => {
     try {
-      await axios.delete(`https://entangen.onrender.com/testimonial/deletTeatimonial/${id}`);
+      await axios.delete(`https://entangle1-api.onrender.com/testimonial/deletTeatimonial/${id}`);
       fetchTestimonials();
     } catch (error) {
       console.error('Error deleting testimonial:', error);
@@ -62,7 +62,7 @@ const StudentManeger = () => {
     if (formData.image) updatedData.append('image', formData.image);
 
     try {
-      await axios.put(`https://entangen.onrender.com/testimonial/updateTeatimonial/${id}`, updatedData);
+      await axios.put(`https://entangle1-api.onrender.com/testimonial/updateTeatimonial/${id}`, updatedData);
       setEditTestimonial(null);
       setFormData({ name: '', rating: 0, review: '', image: null, hover: 0 });
       fetchTestimonials();
@@ -155,7 +155,7 @@ const StudentManeger = () => {
             ) : (
               <>
                 <img
-                  src={`https://entangen.onrender.com/${testimonial.image}`}
+                  src={`https://entangle1-api.onrender.com/${testimonial.image}`}
                   alt={testimonial.name}
                   className="testimonial-image"
                 />

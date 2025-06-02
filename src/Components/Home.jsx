@@ -8,7 +8,7 @@ import ContactUs from "./ContactUs.jsx";
 import Testimonials from "./Testimonials.jsx";
 import Footer from "./Footer.jsx";
 // import Certificate from "../../../backend/models/Certificate.js";
-import CertificateChecker from "./CertificateViewer.jsx";
+import CertificateChecker from "./CertificateViewer";
 
 const Home = () => {
   const location = useLocation();
