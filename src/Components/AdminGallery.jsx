@@ -112,12 +112,12 @@ const AdminGallery = () => {
             <div className="card shadow-sm p-3">
               {item.type === "photo" ? (
                 <img
-                  src={`https://entangle1-api.onrender.com/${item.media}`}
+                  src={`${item.media}`}
                   alt={item.name}
                   className="img-fluid"
                 />
               ) : (
-                <video controls src={`https://entangle1-api.onrender.com/${item.media}`} className="w-100" />
+                <video controls src={`${item.media}`} className="w-100" />
               )}
               <h6 className="mt-2">{item.name}</h6>
               <div className="d-flex justify-content-between mt-2">

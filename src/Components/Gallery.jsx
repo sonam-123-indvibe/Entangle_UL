@@ -94,16 +94,16 @@ const Gallery = () => {
                 <div className="media-card">
                   {item.type === "photo" ? (
                     <img
-                      src={`https://entangle1-api.onrender.com/${item.media}`} 
+                      src={`${item.media}`} 
                       alt={item.name}
                       className="img-fluid media-img"
-                      onClick={() => openModal(`https://entangle1-api.onrender.com/${item.media}`)}
+                      onClick={() => openModal(`${item.media}`)}
                     />
                   ) : (
                     <video
                       controls
                       className="w-100 media-video"
-                      src={`https://entangle1-api.onrender.com/${item.media}`}
+                      src={`${item.media}`}
                     />
                   )}
                   <p className="p-2">{item.name}</p>

@@ -49,7 +49,7 @@ const CertificateViewer = () => {
 
           {certificate.certificateUrl.endsWith('.pdf') ? (
             <a
-              href={`https://entangle1-api.onrender.com${certificate.certificateUrl}`}
+              href={`${certificate.certificateUrl}`}
               target="_blank"
               rel="noreferrer"
               className="view-btn1"
@@ -59,12 +59,12 @@ const CertificateViewer = () => {
           ) : (
             <>
               <img
-                src={`https://entangle1-api.onrender.com${certificate.certificateUrl}`}
+                src={`${certificate.certificateUrl}`}
                 alt="Certificate"
                 className="certificate-image"
               />
               <a
-                href={`https://entangle1-api.onrender.com${certificate.certificateUrl}`}
+                href={`${certificate.certificateUrl}`}
                 target="_blank"
                 rel="noreferrer"
                 className="view-btn1"

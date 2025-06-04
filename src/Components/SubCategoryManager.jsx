@@ -201,7 +201,7 @@ const AdminCourseTable = () => {
                               <React.Fragment key={sub._id}>
                                 <tr>
                                   <td>
-                                    <img src={`https://entangle1-api.onrender.com/${sub.image}`} alt={sub.name} width="60" height="40" className="rounded shadow-sm" />
+                                    <img src={`${sub.image}`} alt={sub.name} width="60" height="40" className="rounded shadow-sm" />
                                   </td>
                                   <td className="fw-medium">{sub.name}</td>
                                   <td>

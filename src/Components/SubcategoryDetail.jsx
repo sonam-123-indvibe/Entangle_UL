@@ -48,7 +48,7 @@ const SubcategoryDetail = () => {
                 <div className="card p-4 shadow-lg subcat-card">
                   <div className="text-center mb-4">
                     <img
-                      src={`https://entangle1-api.onrender.com/${subcategory.image}`}
+                      src={`${subcategory.image}`}
                       alt={subcategory.name}
                       className="img-fluid subcat-image"
                       style={{ width: '190px', objectFit: 'contain' }}

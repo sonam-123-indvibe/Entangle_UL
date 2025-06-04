@@ -55,7 +55,7 @@ const Testimonials = () => {
                 {visibleTestimonials.map((t, i) => (
                   <div className="testimonial-card" key={t._id || i}>
                     <img
-                      src={`https://entangle1-api.onrender.com/${t.image}`}
+                      src={`${t.image}`}
                       alt={t.name}
                       className="testimonial-image"
                     />

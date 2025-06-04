@@ -136,7 +136,7 @@ const CertificateUploadForm = () => {
         {certificate.map(c => (
           <div className="col-md-4 mb-4" key={c._id}>
             <div className="card">
-              <img src={`https://entangle1-api.onrender.com${c.certificateUrl}`} className="card-img-top" alt="Certificate" style={{ height: '250px' }} />
+              <img src={`${c.certificateUrl}`} className="card-img-top" alt="Certificate" style={{ height: '250px' }} />
               <div className="card-body">
                 <h5 className="card-title">Name: {c.name}</h5>
                 <p className="card-text">Roll No: {c.rollNumber}</p>

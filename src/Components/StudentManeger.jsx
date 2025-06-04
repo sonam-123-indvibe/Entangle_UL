@@ -155,7 +155,7 @@ const StudentManeger = () => {
             ) : (
               <>
                 <img
-                  src={`https://entangle1-api.onrender.com/${testimonial.image}`}
+                  src={`${testimonial.image}`}
                   alt={testimonial.name}
                   className="testimonial-image"
                 />
