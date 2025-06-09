@@ -19,7 +19,7 @@ const SubcategoryDetail = () => {
   useEffect(() => {
     const fetchSubcategory = async () => {
       try {
-        const res = await axios.get(`https://entangen-api.onrender.com/api/getsubCaterory/${id}`);
+        const res = await axios.get(`https://entangle1-api.onrender.com/api/getsubCaterory/${id}`);
         setSubcategory(res.data);
       } catch (err) {
         console.error("Failed to fetch subcategory details", err);
