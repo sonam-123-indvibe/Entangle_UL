@@ -171,6 +171,7 @@ const [subTopicVideoUrl, setSubTopicVideoUrl] = useState('');
     <form onSubmit={handleAddSubTopic}>
       <select className="form-control mb-3" onChange={(e) => setSelectedTopicId(e.target.value)} required>
         <option value="">Select Topic</option>
+        {console.log(courses + "Coursess")}
         {courses.map(course =>
           course.subcategories?.map(sub =>
             sub.topics?.map(topic => (
