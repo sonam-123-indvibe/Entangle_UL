@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../assetss/Student.css';
+import '../assets/Student.css';
 import TestimonialForm from './TestimonialForm';
 
 const StudentManeger = () => {
