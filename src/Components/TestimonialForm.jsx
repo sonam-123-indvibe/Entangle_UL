@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../assets/Style/Admin.css';
+import '../assets/Admin.css';
 
 const TestimonialForm = ({ fetchTestimonials, editTestimonial, setEditTestimonial }) => {
   const [name, setName] = useState('');
