@@ -31,21 +31,30 @@ const SubcategoryDetail = () => {
 
   if (!subcategory) return <div className="text-center py-5">Loading...</div>;
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = async () => {
     const input = pdfRef.current;
+
+    // Temporarily expand content
+    const originalHeight = input.style.height;
+    input.style.height = "auto";
+
+    // Allow rendering time
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     html2canvas(input, {
       scale: 2,
-      scrollY: -window.scrollY,
+      scrollY: 0,
       useCORS: true,
+      windowWidth: document.body.scrollWidth,
+      windowHeight: input.scrollHeight
     }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-      let heightLeft = pdfHeight;
       let position = 0;
+      let heightLeft = pdfHeight;
 
       pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
       heightLeft -= pdf.internal.pageSize.getHeight();
@@ -58,6 +67,7 @@ const SubcategoryDetail = () => {
       }
 
       pdf.save(`${subcategory.name}_Details.pdf`);
+      input.style.height = originalHeight;
     });
   };
 
@@ -78,7 +88,6 @@ const SubcategoryDetail = () => {
         <div className="subcat-overlay">
           <div className="container my-5">
             <div className="row">
-              {/* Left Side */}
               <div className="col-md-8">
                 <div className="card p-4 shadow-lg subcat-card">
                   <div className="text-center mb-4">
@@ -111,7 +120,6 @@ const SubcategoryDetail = () => {
                 </div>
               </div>
 
-              {/* Right Side */}
               <div className="col-md-4">
                 <div className="mt-5">
                   <div className="table-responsive">
@@ -141,9 +149,9 @@ const SubcategoryDetail = () => {
                           <td className='t-data'>Yes</td>
                         </tr>
                         <tr>
-  <th className='font feature-table'> <BsCurrencyRupee style={{ fontSize: "40px" }} />Fees</th>
-  <td className='t-data'>₹{subcategory.fees}</td>
-</tr>
+                          <th className='font feature-table'> <BsCurrencyRupee style={{ fontSize: "40px" }} />Fees</th>
+                          <td className='t-data'>₹{subcategory.fees}</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -153,7 +161,7 @@ const SubcategoryDetail = () => {
             </div>
           </div>
 
-          {/* Modal for full detail and pdf */}
+          {/* Modal */}
           {showModal && (
             <div
               className="modal fade show"
@@ -179,7 +187,6 @@ const SubcategoryDetail = () => {
                   <div className="modal-body">
                     <p className='text-dark'><strong>Description:</strong> {subcategory.description}</p>
                     <p className='text-dark'><strong>Duration:</strong> {subcategory.duration}</p>
-                    
 
                     <h5>Topics & Subtopics</h5>
                     {subcategory.topics.map((topic) => (
