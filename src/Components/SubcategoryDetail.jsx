@@ -1,4 +1,3 @@
-// SubcategoryDetail.js
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { BsCurrencyRupee } from "react-icons/bs";
@@ -32,15 +31,19 @@ const SubcategoryDetail = () => {
 
   const handleDownloadPDF = async () => {
     const input = pdfRef.current;
-    input.style.height = 'auto';
+    const buttons = input.querySelectorAll('button');
+
+    // Hide buttons during capture
+    buttons.forEach(btn => btn.style.display = 'none');
+
     window.scrollTo(0, 0);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 300));
 
     html2canvas(input, {
       scale: 2,
       useCORS: true,
       scrollY: 0,
-    }).then((canvas) => {
+    }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -61,6 +64,9 @@ const SubcategoryDetail = () => {
       }
 
       pdf.save(`${subcategory.name}_Details.pdf`);
+
+      // Show buttons again
+      buttons.forEach(btn => btn.style.display = 'inline-block');
     });
   };
 
@@ -87,7 +93,7 @@ const SubcategoryDetail = () => {
                 <div className="card p-4 shadow-lg subcat-card">
                   <div className="text-center mb-4">
                     <img
-                      src={`${subcategory.image}`}
+                      src={subcategory.image}
                       alt={subcategory.name}
                       className="img-fluid subcat-image"
                       style={{ width: '190px', objectFit: 'contain' }}
