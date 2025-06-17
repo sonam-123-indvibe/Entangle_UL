@@ -31,43 +31,32 @@ const SubcategoryDetail = () => {
 
   const handleDownloadPDF = async () => {
     const input = pdfRef.current;
-    const buttons = input.querySelectorAll('button');
 
-    // Hide buttons during capture
-    buttons.forEach(btn => btn.style.display = 'none');
-
-    window.scrollTo(0, 0);
-    await new Promise(resolve => setTimeout(resolve, 300));
-
-    html2canvas(input, {
+    const canvas = await html2canvas(input, {
       scale: 2,
       useCORS: true,
-      scrollY: 0,
-    }).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+    });
 
-      let heightLeft = imgHeight;
-      let position = 0;
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
 
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+    heightLeft -= pageHeight;
+
+    while (heightLeft > 0) {
+      position -= pageHeight;
+      pdf.addPage();
       pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
       heightLeft -= pageHeight;
+    }
 
-      while (heightLeft > 0) {
-        position -= pageHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save(`${subcategory.name}_Details.pdf`);
-
-      // Show buttons again
-      buttons.forEach(btn => btn.style.display = 'inline-block');
-    });
+    pdf.save(`${subcategory.name}_Details.pdf`);
   };
 
   if (!subcategory) return <div className="text-center py-5">Loading...</div>;
@@ -75,17 +64,14 @@ const SubcategoryDetail = () => {
   return (
     <>
       <Nav />
-      <div
-        className="subcat-background"
-        style={{
-          backgroundImage: `url(${bgimg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-          backgroundRepeat: "no-repeat",
-          minHeight: "100vh",
-        }}
-      >
+      <div className="subcat-background" style={{
+        backgroundImage: `url(${bgimg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+      }}>
         <div className="subcat-overlay">
           <div className="container my-5">
             <div className="row">
@@ -93,7 +79,7 @@ const SubcategoryDetail = () => {
                 <div className="card p-4 shadow-lg subcat-card">
                   <div className="text-center mb-4">
                     <img
-                      src={subcategory.image}
+                      src={`${subcategory.image}`}
                       alt={subcategory.name}
                       className="img-fluid subcat-image"
                       style={{ width: '190px', objectFit: 'contain' }}
@@ -158,10 +144,10 @@ const SubcategoryDetail = () => {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
+          {/* Modal */}
           {showModal && (
             <div
               className="modal fade show"
@@ -172,7 +158,7 @@ const SubcategoryDetail = () => {
                 className="modal-dialog modal-lg modal-fullscreen"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="modal-content p-4" ref={pdfRef} style={{ backgroundColor: 'white', color: 'black' }}>
+                <div className="modal-content p-4" style={{ backgroundColor: 'white', color: 'black' }}>
                   <div className="modal-header">
                     <h5 className="modal-title">{subcategory.name} - Full Details</h5>
                     <button className="btn btn-success ms-auto" onClick={handleDownloadPDF}>
@@ -185,8 +171,8 @@ const SubcategoryDetail = () => {
                     ></button>
                   </div>
                   <div className="modal-body">
-                    <p className='text-dark'><strong>Description:</strong> {subcategory.description}</p>
-                    <p className='text-dark'><strong>Duration:</strong> {subcategory.duration}</p>
+                    <p><strong>Description:</strong> {subcategory.description}</p>
+                    <p><strong>Duration:</strong> {subcategory.duration}</p>
                     <h5>Topics & Subtopics</h5>
                     {subcategory.topics.map((topic) => (
                       <div key={topic._id} style={{ marginBottom: '1rem' }}>
@@ -194,9 +180,9 @@ const SubcategoryDetail = () => {
                         <p>{topic.description}</p>
                         {topic.subtopics && topic.subtopics.length > 0 ? (
                           <ul>
-                            {topic.subtopics.map((subtopic) => (
-                              <li key={subtopic._id}>
-                                <strong>{subtopic.title}</strong>
+                            {topic.subtopics.map((sub) => (
+                              <li key={sub._id}>
+                                <strong>{sub.title}</strong>
                               </li>
                             ))}
                           </ul>
@@ -217,6 +203,32 @@ const SubcategoryDetail = () => {
               </div>
             </div>
           )}
+
+          {/* Hidden clone for PDF capture */}
+          <div style={{ position: 'absolute', top: 0, left: 0, opacity: 0, zIndex: -9999 }}>
+            <div ref={pdfRef}>
+              <div style={{ width: '794px', padding: '20px', backgroundColor: 'white', color: 'black' }}>
+                <h3>{subcategory.name} - Full Details</h3>
+                <p><strong>Description:</strong> {subcategory.description}</p>
+                <p><strong>Duration:</strong> {subcategory.duration}</p>
+                <h5>Topics & Subtopics</h5>
+                {subcategory.topics.map((topic) => (
+                  <div key={topic._id}>
+                    <h6>{topic.title}</h6>
+                    <p>{topic.description}</p>
+                    {topic.subtopics && topic.subtopics.length > 0 ? (
+                      <ul>
+                        {topic.subtopics.map((sub) => (
+                          <li key={sub._id}>{sub.title}</li>
+                        ))}
+                      </ul>
+                    ) : <p>No Subtopics</p>}
+                    <hr />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
