@@ -207,7 +207,7 @@ const SubcategoryDetail = () => {
           {/* Hidden clone for PDF capture */}
           <div style={{ position: 'absolute', top: 0, left: 0, opacity: 0, zIndex: -9999 }}>
             <div ref={pdfRef}>
-              <div style={{ width: '794px', padding: '20px', backgroundColor: 'white', color: 'black' }}>
+              <div style={{padding: '20px', backgroundColor: 'white', color: 'black' }}>
                 <h3>{subcategory.name} - Full Details</h3>
                 <p><strong>Description:</strong> {subcategory.description}</p>
                 <p><strong>Duration:</strong> {subcategory.duration}</p>
