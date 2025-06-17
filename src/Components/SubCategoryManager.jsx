@@ -8,7 +8,7 @@ import {
   Form,
   Spinner,
 } from 'react-bootstrap';
-import '../assets/Style/Admin.css';
+import '../assets/Admin.css';
 
 const AdminCourseTable = () => {
   const [courses, setCourses] = useState([]);
