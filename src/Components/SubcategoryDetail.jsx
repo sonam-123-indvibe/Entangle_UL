@@ -1,3 +1,4 @@
+// SubcategoryDetail.js
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { BsCurrencyRupee } from "react-icons/bs";
@@ -29,47 +30,41 @@ const SubcategoryDetail = () => {
     fetchSubcategory();
   }, [id]);
 
-  if (!subcategory) return <div className="text-center py-5">Loading...</div>;
-
   const handleDownloadPDF = async () => {
     const input = pdfRef.current;
-
-    // Temporarily expand content
-    const originalHeight = input.style.height;
-    input.style.height = "auto";
-
-    // Allow rendering time
+    input.style.height = 'auto';
+    window.scrollTo(0, 0);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     html2canvas(input, {
       scale: 2,
-      scrollY: 0,
       useCORS: true,
-      windowWidth: document.body.scrollWidth,
-      windowHeight: input.scrollHeight
-    }).then(canvas => {
+      scrollY: 0,
+    }).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const imgHeight = (canvas.height * pdfWidth) / canvas.width;
 
+      let heightLeft = imgHeight;
       let position = 0;
-      let heightLeft = pdfHeight;
 
-      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
-      heightLeft -= pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+      heightLeft -= pageHeight;
 
       while (heightLeft > 0) {
-        position = heightLeft - pdfHeight;
+        position -= pageHeight;
         pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
-        heightLeft -= pdf.internal.pageSize.getHeight();
+        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+        heightLeft -= pageHeight;
       }
 
       pdf.save(`${subcategory.name}_Details.pdf`);
-      input.style.height = originalHeight;
     });
   };
+
+  if (!subcategory) return <div className="text-center py-5">Loading...</div>;
 
   return (
     <>
@@ -161,7 +156,6 @@ const SubcategoryDetail = () => {
             </div>
           </div>
 
-          {/* Modal */}
           {showModal && (
             <div
               className="modal fade show"
@@ -172,7 +166,7 @@ const SubcategoryDetail = () => {
                 className="modal-dialog modal-lg modal-fullscreen"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="modal-content p-4" ref={pdfRef}>
+                <div className="modal-content p-4" ref={pdfRef} style={{ backgroundColor: 'white', color: 'black' }}>
                   <div className="modal-header">
                     <h5 className="modal-title">{subcategory.name} - Full Details</h5>
                     <button className="btn btn-success ms-auto" onClick={handleDownloadPDF}>
@@ -187,7 +181,6 @@ const SubcategoryDetail = () => {
                   <div className="modal-body">
                     <p className='text-dark'><strong>Description:</strong> {subcategory.description}</p>
                     <p className='text-dark'><strong>Duration:</strong> {subcategory.duration}</p>
-
                     <h5>Topics & Subtopics</h5>
                     {subcategory.topics.map((topic) => (
                       <div key={topic._id} style={{ marginBottom: '1rem' }}>
