@@ -171,8 +171,8 @@ const SubcategoryDetail = () => {
                     ></button>
                   </div>
                   <div className="modal-body">
-                    <p><strong>Description:</strong> {subcategory.description}</p>
-                    <p><strong>Duration:</strong> {subcategory.duration}</p>
+                    <p className="text-dark"><strong>Description:</strong> {subcategory.description}</p>
+                    <p className="text-dark"><strong>Duration:</strong> {subcategory.duration}</p>
                     <h5>Topics & Subtopics</h5>
                     {subcategory.topics.map((topic) => (
                       <div key={topic._id} style={{ marginBottom: '1rem' }}>
