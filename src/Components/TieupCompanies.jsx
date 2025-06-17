@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/Style/TieupCompanies.css';
+import '../assets/TieupCompanies.css';
 
 const companies = [
   { name: 'Mind Path Technology Pvt. Ltd.', logo: 'https://www.mindpathtech.com/wp-content/uploads/2025/05/logo-merge-2-1-1536x298.png' },
