@@ -27,7 +27,7 @@ const AdminCourseTable = () => {
   const loadCourses = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('https://entangen-api.onrender.com/api/courses');
+      const res = await axios.get('https://entangle1-api.onrender.com/api/courses');
       setCourses(res.data);
       console.log('Courses loaded:', res.data);
     } catch (err) {
@@ -43,7 +43,7 @@ const AdminCourseTable = () => {
 
   const handleDelete = async (id, confirmMsg) => {
     if (window.confirm(confirmMsg)) {
-      await axios.delete(`https://entangen-api.onrender.com/${id}`);
+      await axios.delete(`https://entangle1-api.onrender.com/${id}`);
       loadCourses();
     }
   };
@@ -65,8 +65,8 @@ const AdminCourseTable = () => {
   const handleUpdate = async () => {
   try {
     const endpoint = editType === 'course'
-      ? `https://entangen-api.onrender.com/api/course/${editData._id}`
-      : `https://entangen-api.onrender.com/api/subcategory/${editData._id}`;
+      ? `https://entangle1-api.onrender.com/api/course/${editData._id}`
+      : `https://entangle1-api.onrender.com/api/subcategory/${editData._id}`;
 
     let payload;
 
@@ -105,7 +105,7 @@ console.log("Payload:", payload);
 
   const handleTopicUpdate = async () => {
     try {
-      await axios.put(`https://entangen-api.onrender.com/api/topicUpdate/${topicsModal.topic._id}`, topicsModal.topic);
+      await axios.put(`https://entangle1-api.onrender.com/api/topicUpdate/${topicsModal.topic._id}`, topicsModal.topic);
       setTopicsModal({ show: false, topic: null });
       loadCourses();
     } catch (err) {
@@ -116,7 +116,7 @@ console.log("Payload:", payload);
   const handleSubtopicUpdate = async () => {
     try {
       const { topicId, _id, title } = subtopicModal.subtopic;
-      await axios.put(`https://entangen-api.onrender.com/api/topic/${topicId}/subtopic/${_id}`, { title });
+      await axios.put(`https://entangle1-api.onrender.com/api/topic/${topicId}/subtopic/${_id}`, { title });
       setSubtopicModal({ show: false, subtopic: null });
       loadCourses();
     } catch (err) {
