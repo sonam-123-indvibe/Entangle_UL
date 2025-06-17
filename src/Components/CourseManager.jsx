@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../assets/Style/Admin.css'
+import '../assets/Admin.css'
 
 const CourseManager = () => {
 
