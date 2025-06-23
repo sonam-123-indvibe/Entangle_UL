@@ -53,7 +53,7 @@ const HeroSection = () => {
         {/* Hero Section */}
         <section className="hero d-flex align-items-center">
           <div className="container text-center pt-5">
-            <h3 className='welcome'>Wellcome To</h3>
+            <h3 className='welcome'>Welcome To</h3>
             <h1 className="glow-underline-heading">Entengle IT Solution</h1>
            
 
