@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import Course from "./Course.jsx"
 import Gallery from "./Gallery.jsx";
 import HeroSection from "./Herosection.jsx";
+import Services from "./Services.jsx";
 import ContactUs from "./ContactUs.jsx";
 import Testimonials from "./Testimonials.jsx";
 import Footer from "./Footer.jsx";
@@ -39,6 +40,10 @@ const Home = () => {
     <Gallery />
   </section>
 
+  <section id="service">
+    <Services />
+  </section>
+
   <section id="OurStudent">
     <Testimonials />
   </section>
@@ -63,5 +68,6 @@ const Home = () => {
 
 </>)
 };
+
 
 export default Home
