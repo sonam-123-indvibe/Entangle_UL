@@ -87,7 +87,7 @@ const moveIndicator = (id) => {
     <nav className="navbar navbar-expand-lg fixed-top" style={navbarStyle}>
       <div className="container-fluid">
         <a className="navbar-brand fw-bold text-light ms-3" href="#">
-          MySite
+          Entengle
         </a>
        
         <button
@@ -162,3 +162,4 @@ style={{
 }
 
 export default Nav;
+
