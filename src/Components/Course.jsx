@@ -16,7 +16,7 @@ const Course = () => {
 
   const loadCourses = async () => {
     try {
-      const res = await axios.get("http://3.26.7.73:5000/api/courses");
+      const res = await axios.get("https://entangle1-api.onrender.com/api/courses");
       setCourse(res.data);
     } catch (err) {
       console.error("Error fetching courses:", err);
